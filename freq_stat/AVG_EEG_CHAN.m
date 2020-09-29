@@ -3,28 +3,28 @@ clear all;
 clc;
 
 ft_defaults
-load C:\Users\piorecky\Desktop\DP\results\freqAbsolutSpctrm
-pac = fieldnames(Normalized_freqERF_A); %pacienti maji vsechny znacky, je jedno, co vybereme na delku
+load XXXXXXXXXX
+pac = fieldnames(Normalized_freqERF_A);
 band = fieldnames(Normalized_freqERF_A.pac2);
 
-for i = 1:length(pac) %pres vsechny pacienty
+for i = 1:length(pac) 
 
     
     
-   for j = 1:length(band) %pro vsechna pasma
+   for j = 1:length(band) 
        
 
 cfg = [];
-cfg.channel          = 'all';%{'E1','E2','E3'};
+cfg.channel          = 'all';
 cfg.latency          = 'all';
-cfg.avgoverchan      = 'yes'; %prumer pres kanaly
+cfg.avgoverchan      = 'yes'; 
 cfg.frequency        = 'all';
 cfg.parameter        = 'powspctrm';
-cfg.tail             = 0; %oboustranny test (neptam se vetsi mensi)
+cfg.tail             = 0;
 cfg.method           = 'montecarlo';
-cfg.statistic        = 'indepsamplesT' ;%'ft_statfun_depsamplesT';
+cfg.statistic        = 'indepsamplesT';
 cfg.numrandomization = 500;
-    %nadefinovani, co je A a T
+
     design = zeros(1,size(Normalized_freqERF_T.(pac{i}).(band{j}).powspctrm,1) + size(Normalized_freqERF_A.(pac{i}).(band{j}).powspctrm,1));
     design(1,1:size(Normalized_freqERF_T.(pac{i}).(band{j}).powspctrm,1)) = 1;
     design(1,(size(Normalized_freqERF_T.(pac{i}).(band{j}).powspctrm,1)+1):(size(Normalized_freqERF_T.(pac{i}).(band{j}).powspctrm,1)+...

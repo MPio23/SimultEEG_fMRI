@@ -3,8 +3,8 @@ clear all;
 clc;
 
 ft_defaults
-load D:\Marek_P\256EEG_dp\results\freqAbsolutSpctrm
-pac = fieldnames(Normalized_freqERF_A); %pacienti maji vsechny znacky, je jedno, co vybereme na delku
+load XXXXXXXXXXXXXXXXXX
+pac = fieldnames(Normalized_freqERF_A); 
 band = fieldnames(Normalized_freqERF_A.pac2);
 
 
@@ -17,21 +17,21 @@ neighbours = ft_prepare_neighbours(cfg);
 ft_neighbourplot(cfg);
 
 
-for i = 1:length(pac) %pres vsechny pacienty
+for i = 1:length(pac) %all subjects
 
     
     
-   for j = 1:length(band) %pro vsechna pasma
+   for j = 1:length(band) %all bands
        
 
     cfg = [];
-    cfg.channel          = 'all';%{'E1','E2','E3'};
+    cfg.channel          = 'all';
     cfg.neighbours       = neighbours; 
     cfg.latency          = 'all';
-    cfg.avgoverchan      = 'no'; %prumer pres kanaly
+    cfg.avgoverchan      = 'no'; 
     cfg.frequency        = 'all';
     cfg.parameter        = 'powspctrm';
-    cfg.tail             = 0; %oboustranny test (neptam se vetsi mensi)
+    cfg.tail             = 0; 
     cfg.method           = 'montecarlo';
     cfg.correctm         = 'cluster';
     cfg.correcttail      = 'prob';
@@ -56,24 +56,22 @@ end
 save Statistic stat
 
 %%
-for i = 1:length(pac) %pres vsechny pacienty
+for i = 1:length(pac)
 
     
     try
-   for j = 1:length(band) %pro vsechna pasma
+   for j = 1:length(band) 
        
        data = stat.(pac{i}).(band{j});
        
         cfg = [];
         cfg.highlightsymbolseries = ['*','*','.','.','.'];
-        %cfg.highlightchannel = find(data.negclusterslabelmat | data.posclusterslabelmat);
         cfg.elec = ft_read_sens('GSN-HydroCel-257.sfp');
         cfg.layout = ft_prepare_layout(cfg);
         cfg.contournum = 0;
         cfg.markersymbol = '.';
         cfg.alpha = 0.05;
         cfg.parameter='stat';
-        % cfg.zlim = [-5 5];
         ft_clusterplot(cfg,data);
        
 

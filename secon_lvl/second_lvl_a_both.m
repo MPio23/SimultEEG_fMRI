@@ -1,33 +1,30 @@
 
 
 clear ; clc
-%addpath('/usr/local/spm12')
-addpath('D:\Marek_P\spm12\spm12\')
+addpath('to spm12\')
 clear classes
 spm('defaults', 'fmri')
 spm_jobman('initcfg')
 
 %patient a
 scans_group1 = { ...
-'H:\piorecky\\simult_sleep_data_MRcorrect\patient\PARS_P02412_20180228_1203_1\first_lvl_func_20200708_082605/con_0001.nii'
-'H:\piorecky\\simult_sleep_data_MRcorrect\patient\PARS_P02416_20171018_1217_1\first_lvl_func_20200708_091143/con_0001.nii'
-'H:\piorecky\\simult_sleep_data_MRcorrect\patient\PARS_P02419_20171128_1714_1\first_lvl_func_20200708_100440/con_0001.nii'
-'H:\piorecky\\simult_sleep_data_MRcorrect\patient\PARS_P02421_20180207_1206_1\first_lvl_func_20200708_110024/con_0001.nii'
-'H:\piorecky\\simult_sleep_data_MRcorrect\patient\PARS_P02431_20170815_1219_1\first_lvl_func_20200708_073407/con_0001.nii'
+'XXXXXXXX/con_0001.nii'
+'XXXXXXXX/con_0001.nii'
+.
+.
+.
 };
 
 %control a
 scans_group2 =   { ...
-'H:\piorecky\\simult_sleep_data_MRcorrect\control\PARS_P02409_20190514_0926_1\first_lvl_func_20200707_100305_a/con_0001.nii'
-'H:\piorecky\\simult_sleep_data_MRcorrect\control\PARS_P02411_20190507_0844_1\first_lvl_func_20200707_102210_a/con_0001.nii'
-'H:\piorecky\\simult_sleep_data_MRcorrect\control\PARS_P02423_20181016_0858_1\first_lvl_func_20200707_145616_a/con_0001.nii'
-'H:\piorecky\\simult_sleep_data_MRcorrect\control\PARS_P02425_20181127_0909_1\first_lvl_func_20200707_154217_a/con_0001.nii'
-'H:\piorecky\\simult_sleep_data_MRcorrect\control\PARS_P02426_20190205_0920_1\first_lvl_func_20200707_162551_a/con_0001.nii'
-'H:\piorecky\\simult_sleep_data_MRcorrect\control\PARS_P02427_20190305_0912_1\first_lvl_func_20200707_171009_a/con_0001.nii'
-'H:\piorecky\\simult_sleep_data_MRcorrect\control\PARS_P02428_20190319_0934_1\first_lvl_func_20200707_175407_a/con_0001.nii'
+'XXXXXXXX/con_0001.nii'
+'XXXXXXXX/con_0001.nii'
+.
+.
+.
 };
 
-matlabbatch{1}.spm.stats.factorial_design.dir = cellstr('D:\Marek_P\disert\para\result\both_a');
+matlabbatch{1}.spm.stats.factorial_design.dir = cellstr('XXXXXXX');
 matlabbatch{1}.spm.stats.factorial_design.des.t2.scans1 = scans_group1;
 matlabbatch{1}.spm.stats.factorial_design.des.t2.scans2 = scans_group2;
 matlabbatch{1}.spm.stats.factorial_design.des.t2.dept = 0;

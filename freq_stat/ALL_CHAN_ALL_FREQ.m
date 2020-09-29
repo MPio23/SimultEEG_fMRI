@@ -3,8 +3,8 @@ clear all;
 clc;
 
 ft_defaults
-load D:\Marek_P\256EEG_dp\results\freqRelatSpctrm1Hz
-pac = fieldnames(Normalized_freqERF_A); %pacienti maji vsechny znacky, je jedno, co vybereme na delku
+load XXXXXX
+pac = fieldnames(Normalized_freqERF_A);
 
 cfg.elec = ft_read_sens('GSN-HydroCel-257.sfp');
 cfg.layout = ft_prepare_layout(cfg);
@@ -15,7 +15,7 @@ neighbours = ft_prepare_neighbours(cfg);
 ft_neighbourplot(cfg);
 
 
-for i = 1:length(pac) %pres vsechny pacienty
+for i = 1:length(pac) %all subjects
 
     
     
@@ -35,7 +35,7 @@ for i = 1:length(pac) %pres vsechny pacienty
     cfg.statistic        = 'ft_statfun_indepsamplesT'; 
     cfg.numrandomization = 1000;
 
-    %nadefinovani, co je A a T
+   
     design = zeros(1,size(Normalized_freqERF_T.(pac{i}).freq.powspctrm,1) + size(Normalized_freqERF_A.(pac{i}).freq.powspctrm,1));
     design(1,1:size(Normalized_freqERF_T.(pac{i}).freq.powspctrm,1)) = 1;
     design(1,(size(Normalized_freqERF_T.(pac{i}).freq.powspctrm,1)+1):(size(Normalized_freqERF_T.(pac{i}).freq.powspctrm,1)+...
